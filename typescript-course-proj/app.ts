@@ -1,14 +1,21 @@
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-    const sum = n1+n2
-    if (showResult) {
-        console.log(phrase + sum);
+class ProjectInput {
+    templateElement: HTMLTemplateElement;
+    hostElement: HTMLDivElement;
+    element: HTMLFormElement;
+    
+    constructor() {
+        this.templateElement = document.getElementById('prject-input')! as HTMLTemplateElement;
+        this.hostElement = document.getElementById('app')! as HTMLDivElement;
+
+        const importedNode = document.importNode(this.templateElement.content, true);
+        this.element = importedNode.firstElementChild as HTMLFormElement;
+        this.attach();
+
     }
-    return n1 + n2
+
+    private attach() {
+        this.hostElement.insertAdjacentElement('afterbegin', this.element);
+    }
 }
 
-const number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-const resultPhrase = 'Result is: ';
-
-const result = add(number1, number2, printResult, resultPhrase);
+const projInput = new ProjectInput();

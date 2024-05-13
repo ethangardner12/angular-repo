@@ -2,6 +2,9 @@ var button = document.querySelector("button");
 var input1 = document.getElementById("num1");
 var input2 = document.getElementById("num2");
 function add(num1, num2) {
+    if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+        throw new Error('Incorrect input type');
+    }
     return num1 + num2;
 }
 button.addEventListener("click", function () {
