@@ -1,4 +1,4 @@
-class ProjectInput {
+class ProjectInput {x
     templateElement: HTMLTemplateElement;
     hostElement: HTMLDivElement;
     element: HTMLFormElement;
