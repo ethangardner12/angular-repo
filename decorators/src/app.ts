@@ -14,7 +14,7 @@ function WithTemplate(template: string, hookId: string) {
     originalConstructor: T
   ) {
     return class extends originalConstructor {
-      constructor(..._: any[]) {
+      constructor(..._: any[]) { //underscore means I won't use this any array
         super();
         console.log('Rendering template');
         const hookEl = document.getElementById(hookId);
@@ -27,34 +27,33 @@ function WithTemplate(template: string, hookId: string) {
   };
 }
 
-// @Logger('LOGGING - PERSON')
+//@ points at the dec function but does not call it
 @Logger('LOGGING')// gives logger function string LOGGING
-@WithTemplate('<h1>My Person Object</h1>', 'app') // gives wtihtemp function the template my person obj. and hookId app
+@WithTemplate('<h1>My Person Object</h1>', 'app') // gives withtemp function the template my person obj. and hookId app
 class Person { // creating person with name ethan
   name = 'Ethan';
 
   constructor() {
-    console.log('Creating person object...');
+    console.log('Creating person object...');//just to show thi is executed
   }
 }
 
 const pers = new Person(); // creates new object pers (ethan)
 
-console.log(pers);
+console.log(pers); //logs new person to show successful run
 
-// ---
 
 function Log(target: any, propertyName: string | Symbol) {
   console.log('Property decorator!');
   console.log(target, propertyName);
-}
+} //logs details about decorated property
 
 function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
   console.log('Accessor decorator!');
   console.log(target);
   console.log(name);
   console.log(descriptor);
-}
+} //logs details about getters and setters
 
 function Log3(
   target: any,
@@ -65,14 +64,14 @@ function Log3(
   console.log(target);
   console.log(name);
   console.log(descriptor);
-}
+} //logs detailsa bout decorated method 
 
 function Log4(target: any, name: string | Symbol, position: number) {
   console.log('Parameter decorator!');
   console.log(target);
   console.log(name);
   console.log(position);
-}
+} // logs details about decorated parameter
 
 class Product {
   @Log
@@ -97,7 +96,7 @@ class Product {
   getPriceWithTax(@Log4 tax: number) {
     return this._price * (1 + tax);
   }
-}
+} //uses decorators to create the product object
 
 const p1 = new Product('Book', 19);
 const p2 = new Product('Book 2', 29);
@@ -113,7 +112,7 @@ function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
     }
   };
   return adjDescriptor;
-}
+} // makes sure that the showMessage method always has correct object context when called (similar to event listener)
 
 class Printer {
   message = 'This works!';
@@ -136,7 +135,7 @@ interface ValidatorConfig {
   [property: string]: {
     [validatableProp: string]: string[]; // ['required', 'positive']
   };
-}
+} //checks the registeredValidators obj for given instaces constructor name to retrieve validaiton rules
 
 const registeredValidators: ValidatorConfig = {};
 
@@ -164,16 +163,16 @@ function validate(obj: any) {
     for (const validator of objValidatorConfig[prop]) {
       switch (validator) {
         case 'required':
-          isValid = isValid && !!obj[prop];
+          isValid = isValid && !!obj[prop]; //checks for non-empty value
           break;
         case 'positive':
-          isValid = isValid && obj[prop] > 0;
+          isValid = isValid && obj[prop] > 0;//checks for positive number
           break;
       }
     }
   }
   return isValid;
-}
+} //loops through properties and their validators then applies validation logic
 
 class Course {
   @Required
@@ -185,7 +184,7 @@ class Course {
     this.title = t;
     this.price = p;
   }
-}
+} //has title and price properties decorated with required and posNumber
 
 const courseForm = document.querySelector('form')!;
 courseForm.addEventListener('submit', event => {
@@ -200,7 +199,9 @@ courseForm.addEventListener('submit', event => {
 
   if (!validate(createdCourse)) {
     alert('Invalid input, please try again!');
-    return;
+    return; //if validation fails, user alerted. Otherwise logs the instance
   }
   console.log(createdCourse);
-});
+}); //adds event listener to the submit button
+// extracts values from input fields, validates the course instace when created
+
