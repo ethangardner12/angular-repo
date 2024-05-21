@@ -2,19 +2,19 @@
 interface Draggable {
   dragStartHandler(event: DragEvent): void;
   dragEndHandler(event: DragEvent): void;
-}
+} //defines the methods for handing the start and end of drag event
 
 interface DragTarget {
   dragOverHandler(event: DragEvent): void;
   dropHandler(event: DragEvent): void;
   dragLeaveHandler(event: DragEvent): void;
-}
+} //defiens the methods for handling drag events over a taget, dropping, and leaving a target
 
-// Project Type
+
 enum ProjectStatus {
   Active,
   Finished
-}
+} //Enums of prossible project statuses
 
 class Project {
   constructor(
@@ -24,7 +24,7 @@ class Project {
     public people: number,
     public status: ProjectStatus
   ) {}
-}
+} //defines a project object
 
 // Project State Management
 type Listener<T> = (items: T[]) => void;
@@ -35,7 +35,7 @@ class State<T> {
   addListener(listenerFn: Listener<T>) {
     this.listeners.push(listenerFn);
   }
-}
+} // generic state management class that maintains a list of listeners to call when the state changes
 
 class ProjectState extends State<Project> {
   private projects: Project[] = [];
@@ -78,7 +78,8 @@ class ProjectState extends State<Project> {
       listenerFn(this.projects.slice());
     }
   }
-}
+} // manages the state of the projects
+//Provides methods to add and move projects, and notify listeners about state changes
 
 const projectState = ProjectState.getInstance();
 
@@ -125,6 +126,7 @@ function validate(validatableInput: Validatable) {
   }
   return isValid;
 }
+// provides validation rules for the form inputs
 
 // autobind decorator
 function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
@@ -137,7 +139,7 @@ function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
     }
   };
   return adjDescriptor;
-}
+} //binds the this context of a method to the object for event handlers
 
 // Component Base Class
 abstract class Component<T extends HTMLElement, U extends HTMLElement> {
@@ -177,7 +179,7 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
 
   abstract configure(): void;
   abstract renderContent(): void;
-}
+} // provides base class for html element creation and attatchment
 
 // ProjectItem Class
 class ProjectItem extends Component<HTMLUListElement, HTMLLIElement>
@@ -215,12 +217,12 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement>
     this.element.addEventListener('dragend', this.dragEndHandler);
   }
 
-  renderContent() {
+  renderContent() { //renders content project details
     this.element.querySelector('h2')!.textContent = this.project.title;
     this.element.querySelector('h3')!.textContent = this.persons + ' assigned';
     this.element.querySelector('p')!.textContent = this.project.description;
   }
-}
+}// an individual project item. This is where the drag and drop funcitonality is
 
 // ProjectList Class
 class ProjectList extends Component<HTMLDivElement, HTMLElement>
@@ -292,7 +294,8 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>
       new ProjectItem(this.element.querySelector('ul')!.id, prjItem);
     }
   }
-}
+}//a list of the projects
+//can support have projects dragged into it
 
 // ProjectInput Class
 class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
@@ -350,7 +353,7 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
       return;
     } else {
       return [enteredTitle, enteredDescription, +enteredPeople];
-    }
+    } //validates user input
   }
 
   private clearInputs() {
@@ -368,9 +371,9 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
       projectState.addProject(title, desc, people);
       this.clearInputs();
     }
-  }
-}
+  }//autobind 'this' for event handlers
+}// handles user input for creating a new project
 
-const prjInput = new ProjectInput();
-const activePrjList = new ProjectList('active');
-const finishedPrjList = new ProjectList('finished');
+const prjInput = new ProjectInput(); 
+const activePrjList = new ProjectList('active'); //creates instace of an active project list
+const finishedPrjList = new ProjectList('finished'); //creates instace of a finshed project list
