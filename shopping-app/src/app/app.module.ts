@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './headerComponent/header.component';
 import { RecipesComponent } from './recipesComponent/recipes.component';
 import { RecipeListComponent } from './recipesComponent/recipeList/recipe-list.component';
-import { RecipeDetailComponent } from './recipesComponent/recipe/recipeDetail/recipe-detail-component.component';
+import { RecipeDetailComponent } from './recipesComponent/recipe-detail/recipe-detail-component.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeItemComponent } from './recipesComponent/recipeList/recipe-item/recipe-item.component';
