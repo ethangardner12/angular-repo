@@ -1,21 +1,21 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
+<nav class="navbar navbar-inverse"> <!--inverse(black) navbar style using bootstrap. can use 'default' instead-->
+    <div class="container-fluid"> <!--fluid expands to full idth instead of fixed size-->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
-                <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
+            <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed"> <!--toggle button for collapsing navbar on smaller screens. collapsed variable in ts file-->
+                <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span> <!--array for the three lines in the hamburger icon when collapsed-->
             </button>
-            <a routerLink="/" class="navbar-brand">Recipe Book</a>
+            <a routerLink="/" class="navbar-brand">Recipe Book</a> <!--brandname of the site. links to the root (homepage) when clicked using "/" angualr syntax-->
         </div>
-          <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true"> <!---->
+          <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true"> <!--applies collapse class which hides content based on value of collapsed var-->
             <ul class="nav navbar-nav">
                 <li><a href="#">Recipes</a></li>
                 <li><a href="#">Shopping List</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+            </ul><!--ul contains the navigation items links-->
+            <ul class="nav navbar-nav navbar-right"><!--assigned items of new ul to the right using b3 styling-->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a><!--dropdown mennu using claret icon to the right indicating to user that it is a drop down button-->
                     <ul class="dropdown-menu">
-                        <li><a href="#">Save Data</a></li>
+                        <li><a href="#">Save Data</a></li><!--list items to be shown when dropdown button is clicked-->
                         <li><a href="#">Fetch Data</a></li>
                     </ul>
                 </li>
