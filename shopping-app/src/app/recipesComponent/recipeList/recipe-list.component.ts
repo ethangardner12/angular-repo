@@ -12,8 +12,7 @@ export class RecipeListComponent implements OnInit {
     new Recipe('Steak Recipe', 'Description for the steak recipe', 'https://th.bing.com/th/id/OIP.Y9JT709sakFUcfUuKkTMJwHaHa?w=186&h=186&c=7&r=0&o=5&pid=1.7')
   ];//creating two new test Recipe objects within the recipes array that only contains Recipe objects
   
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
   }
   
   constructor(){}

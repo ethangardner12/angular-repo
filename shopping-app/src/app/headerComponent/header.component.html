@@ -8,8 +8,8 @@
         </div>
           <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true"> <!--applies collapse class which hides content based on value of collapsed var-->
             <ul class="nav navbar-nav">
-                <li><a href="#">Recipes</a></li>
-                <li><a href="#">Shopping List</a></li>
+                <li><a href="#" (click)="onSelect('recipe')">Recipes</a></li>
+                <li><a href="#" (click)="onSelect('shopping-list')">Shopping List</a></li>
             </ul><!--ul contains the navigation items links-->
             <ul class="nav navbar-nav navbar-right"><!--assigned items of new ul to the right using b3 styling-->
                 <li class="dropdown">
