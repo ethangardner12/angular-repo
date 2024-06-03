@@ -1,9 +1,15 @@
 <div class="row"><!--recipe section of the app-->
   <div class="col-md-5"><!--using 5/12 columns for medium screens for recipe list-->
-    <app-recipe-list></app-recipe-list>
+    <app-recipe-list
+      (recipeWasSelected)="selectedRecipe = $event"></app-recipe-list>
   </div>
 
   <div class="col-md-7"><!--using the other 7/12 columns for recipe details to the right of the list-->
-    <app-recipe-detail></app-recipe-detail>
+    <app-recipe-detail
+      *ngIf="selectedRecipe; else infoText"
+      [recipe]="selectedRecipe"></app-recipe-detail>
+      <ng-template #infoText>
+        <p>Please select a Recipe!</p>
+      </ng-template>
   </div>
 </div>
