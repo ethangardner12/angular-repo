@@ -1,1 +1,9 @@
-<p>recipe-item works!</p>
+<a href="#" class="list-group-item clearfix">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ recipe.name }}</h4><!--string manipulation getting the recipe name only from the object-->
+    <p class="list-group-item-text">{{ recipe.description }}</p><!--string manipulation getting the recipe description only from the object-->
+  </div>
+  <span class="pull-right"><!--pull right to put the image to far right of the row div-->
+    <img src="{{ recipe.imagePath }}" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 50px;"><!--string manipulation getting the recipe img only from the object. responsive auto adjust to fit screen size-->
+  </span>
+</a>
