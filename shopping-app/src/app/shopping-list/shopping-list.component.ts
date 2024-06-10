@@ -15,7 +15,7 @@ export class ShoppingListComponent implements OnInit {
 
   constructor() { }
   ngOnInit() {
-
+    //life cycle hook called by Angular to indicate that Angular is done creating the component.
   }
 
   onIngredientAdded(ingredient: Ingredient){
