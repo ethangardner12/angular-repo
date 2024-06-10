@@ -1,0 +1,33 @@
+.row {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+h5 {
+  font-weight: bold;
+}
+
+.btn-active{
+  border-radius: 10px;
+  border-color: rgb(42, 186, 42);
+  margin: 5px;
+  background-color: rgb(42, 186, 42);
+  color: black;
+}
+
+.btn-inactive{
+  border-radius: 10px;
+  border-color: rgb(255, 42, 0);
+  margin: 5px;
+  background-color: rgb(255, 42, 0);
+  color: black;
+}
+
+.btn-unknown{
+  border-radius: 10px;
+  border-color: rgb(147, 148, 148);
+  margin: 5px;
+  background-color: rgb(147, 148, 148);
+  color: black;
+}
